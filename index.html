@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            display: block;
+            text-align: center;
+            width: 50%;
+        }
+        button {
+            
+            border: 2px solid blue;
+            border-radius: 5px;
+            width: 80px;
+            height: 40px;
+            font-weight: bold;
+
+
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Привет</h1>
+    <img src="1.jpg" alt="">
+    <button id='change'>change</button>
+    <button id='change-user'>change user</button>
+
+    
+    <script>
+        let myImg = document.querySelector('img');
+        let changeButton = document.querySelector('#change');
+        let changeUserButton = document.querySelector('#change-user');
+        let heading = document.querySelector('h1');
+
+
+        changeButton.onclick = function() {
+            let mySrc = myImg.getAttribute('src');
+
+            if (mySrc==='1.jpg') {
+                myImg.setAttribute('src', '2.jfif');
+            } else if (mySrc==='2.jfif') {
+                myImg.setAttribute('src', '3.jpg'); 
+            } else if (mySrc==='3.jpg') {
+                myImg.setAttribute('src', '4.jpg'); 
+            } else {myImg.setAttribute('src', '1.jpg');
+        }
+        }
+
+        function setUserName() {
+            let myName = prompt('Как ваше имя?');
+            localStorage.setItem('name', myName);
+            heading.textContent="Привет, "+ myName;
+        }
+
+        if(!localStorage.getItem('name')) {
+            setUserName();
+        } else {
+            let storedName = localStorage.getItem('name');
+            heading.textContent="Привет, "+ storedName;
+        }
+
+        changeUserButton.onclick=function() {setUserName()};
+
+    </script>
+</body>
+</html>
