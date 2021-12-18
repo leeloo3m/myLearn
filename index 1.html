@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -96,4 +97,104 @@
 
     </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .conteiner {
+            display: inline-block;
+            text-align: center;
+        }
+        #img-slide {
+            width: 50%; 
+            <!--или любое количество процентов пока размер тебя не устроит-->
+        }
+       #prev {
+           position: absolute;
+           left: 15%;
+           top: 20%; 
+       }
+       #next {
+           position: absolute;
+           right: 15%;
+           top: 20%; 
+       }
+    </style>
+</head>
+<body>
+    <!--1. создаем на рабочем столе папку slider
+    //2. кладем в нее все изображения из которых будет состоять фотогалерея
+    //3. открываем vs code, нажимаем файл-открыть папку-slider
+    //4. создаем в этой папке новый файл index.html (как это сделать смотри фото1)
+    //5. пишем ! tab 
+    //6. в боди приступаем к работе
+    //7. для начала на языке html рисуем разметку сайта: нам нужна кнопка Prev, блок где будет изображение, и кнопка Next -->
+    
+    <div class='conteiner'>
+        <button id='prev'>prev</button>
+        <img src='1.jpg' id='img-slide'>
+        <button id='next'>next</button>
+
+    </div>
+    <!--8. теперь рисуем стили, нам нужно чтобы это все стояло в одну линию кнопка-изобр-кнопка. В head рисуем тег style и прописываем
+    9. теперь все остальное и самое главное будем писать на языке java script в тегах script-->
+    <script>
+        //10. создаем объект Слайдер обьекты как и люди имеют свойства и умеют действовать
+        var slider = {
+            //хватаемся за кнопки и изобр переменными
+            prevBtn: document.querySelector('#prev'),
+            nextBtn: document.querySelector('#next'),
+            imgSlide: document.querySelector('#img-slide'), 
+            imgArray: [],
+            currentImageIndex: 0,
+
+            //запускаем программу действием-функцией. заполняем массив фотками (переименуй их в папке для простоты цифрами 1, 2, 3...)
+            start: function() {
+                let that = this;
+            this.imgArray.push('1.jpg');
+            this.imgArray.push('2.jpg');
+            this.imgArray.push('3.jpg');
+            this.imgArray.push('4.jpg');
+            this.prevBtn.disabled = true;
+            
+            //ставим фотку на начальное изображение
+            this.imgSlide.src = this.imgArray[this.currentImageIndex];
+
+            //добавляем кнопкам обработчики событий, то есть при клике на кнопку какое действие должно произойти
+            this.prevBtn.addEventListener('click', function(e) {that.onPrevBtnClick(e)});
+
+            this.nextBtn.addEventListener('click', function(e) {that.onNextBtnClick(e)});
+            },
+
+            //пишем действия кнопкам: при клике перелистни фотку, если фотки кончились-заблокируй кнопку
+            onPrevBtnClick: function (e) {
+            this.currentImageIndex--;
+            this.imgSlide.src = this.imgArray[this.currentImageIndex];
+            this.nextBtn.disabled = false;
+            if (this.currentImageIndex === 0) {
+            this.prevBtn.disabled = true;
+            }
+            },
+
+            onNextBtnClick: function (e) {
+            this.currentImageIndex++;
+            this.imgSlide.src = this.imgArray[this.currentImageIndex];
+            this.prevBtn.disabled = false;
+            if (this.currentImageIndex === this.imgArray.length - 1) {
+            this.nextBtn.disabled = true;
+            }
+            },
+
+        }
+        // просим наш обьект заработать
+        slider.start();
+
+    </script>
+</body>
+>>>>>>> 963a11a76f2ac740845c1b9672380357ca55b030
 </html>
